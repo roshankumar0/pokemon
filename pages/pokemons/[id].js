@@ -1,20 +1,20 @@
 import React from 'react'
 import Layout from '../../components/Layout'
-
+import Image from 'next/image'
 const pokemonDetails = ({ data }) => {
     if(!data){
         return <div>loading</div>
     }
     return (
         <Layout title={`${data.name.english}`}>
-            <img src={`${data.image.hires}`} />
+            <Image src={`${data.image.hires}`} height={300} width={250} alt={data.name.english}/>
             <p>{data.description}</p>
             <h1>{data.type}</h1>
             <p>Height: {data.profile.height}</p>
             <p>Weight: {data.profile.weight}</p>
             <div>
                 {Object.keys(data.base).map((sing, double) => {
-                    return <div className='flex'>
+                    return <div className='flex' key={sing.id}>
                         <p>{sing}</p>
                         <h1>{double}</h1>
                     </div>
